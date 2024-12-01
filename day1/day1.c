@@ -2,38 +2,39 @@
 #include <stdlib.h>
 #include <string.h>
 
-/*Para el quicksort*/
-int comparar(const void* a, const void* b) {
+/* For quicksort */
+int compare(const void* a, const void* b) {
     return (*(int*)a - *(int*)b);
 }
 
 int main(int argc, char **argv) {
-    /*Declaración e inicialización de variables*/
-    FILE *archivo;
-    char linea[32];
-    int lista1[1000], lista2[1000];
-    int n = sizeof(lista1) / sizeof(lista1[0]), resultado = 0;
+    /* Declaration and initialization of variables */
+    FILE *file;
+    char line[32];
+    int list1[1000], list2[1000];
+    int n = sizeof(list1) / sizeof(list1[0]), result = 0;
 
-    /*Apertura del archivo*/
-    archivo = fopen("input.txt", "r");
-    if (archivo == NULL) {
-        perror("Error abriendo el archivo\n");
+    /* Opening the file */
+    file = fopen("input.txt", "r");
+    if (file == NULL) {
+        perror("Error opening the file\n");
         exit(1);
     }
 
-    /*Guardar en las listas los datos*/
-    for(int i = 0; fgets(linea, sizeof(linea), archivo); i++) {
-        sscanf(linea, "%d %d", &lista1[i], &lista2[i]);
+    /* Storing data in the lists */
+    for(int i = 0; fgets(line, sizeof(line), file); i++) {
+        sscanf(line, "%d %d", &list1[i], &list2[i]);
     }
 
-    /*Ordenar mediante quicksort*/
-    qsort(lista1, n, sizeof(int), comparar);
-    qsort(lista2, n, sizeof(int), comparar);
+    /* Sorting using quicksort */
+    qsort(list1, n, sizeof(int), compare);
+    qsort(list2, n, sizeof(int), compare);
 
-    /*Calcular el resultado*/
+    /* Calculating the result */
     for(int i = 0; i < n; i++) {
-        resultado += abs(lista1[i] - lista2[i]);
+        result += abs(list1[i] - list2[i]);
     }
 
-    printf("El resultado es: %d\n", resultado);
+    printf("The result is: %d\n", result);
 }
+
