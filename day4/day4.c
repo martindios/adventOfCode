@@ -9,6 +9,7 @@ int checkBorders(int i, int j) {
     return 1;
 }
 
+/*Check combination*/
 int checkXmas(char matrix[140][140], int i, int j, int stepi, int stepj){
     if(matrix[i][j] == 'X') {
         i += stepi;
@@ -48,12 +49,13 @@ int main() {
         exit(1);
     }
 
+    /*Read input*/
     int a = 0;
     while(fgets(matrix[a], sizeof(matrix), file)) {
         a++;
     }
 
-
+    /*Iterate matrix testing all permutations*/
     for(int i = 0; i < 140; i++) {
         for(int j = 0; j < 140; j++) {
             if(checkXmas(matrix, i, j, 1, 0)) {
